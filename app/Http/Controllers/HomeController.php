@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -16,16 +18,25 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        $isi['count_user'] = DB::table('users')->count();
-        $isi['menu'] = 'menu.v_menu_admin';
-        $isi['content'] = 'content.view_dashboard';
-        return view('layouts.v_template',$isi);
+        $id_user = Auth::id();
+        $cek = DB::table('users')->select('level')->where('id', '=', $id_user)->get();
+        $idfinal = $cek[0]->level;
+        // dd($idfinal);
+        $data['count_user'] =  User::latest()->count();
+        $data['name'] = array('Candidate 1', 'Candidate 2', 'Candidate 3' );
+
+        if($idfinal == '0'){
+            $data['menu'] = 'menu.v_menu_admin';
+            $data['content'] = 'content.view_dashboard';
+            return view('layouts.v_template',$data);
+        }else{
+            // $data['menu'] = 'menu.v_menu_user';
+            // $data['content'] = 'content.vote_board';
+          return view('content.vote_board',$data);
+
+        }
+        // $data['content'] = 'content.view_dashboard';
     }
 }

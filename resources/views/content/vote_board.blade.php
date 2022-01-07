@@ -32,7 +32,9 @@
     <link href="{{asset('metch')}}/uiicon/css/uicons-regular-rounded.css" rel="stylesheet">
     {{-- cdn --}}
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js" integrity="sha512-TW5s0IT/IppJtu76UbysrBH9Hy/5X41OTAbQuffZFU6lQ1rdcLHzpU5BzVvr/YFykoiMYZVWlr/PX1mDcfM9Qg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
+        integrity="sha512-TW5s0IT/IppJtu76UbysrBH9Hy/5X41OTAbQuffZFU6lQ1rdcLHzpU5BzVvr/YFykoiMYZVWlr/PX1mDcfM9Qg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.23/b-1.6.5/b-html5-1.6.5/datatables.min.css" />
@@ -54,7 +56,6 @@
         .paginate_button .current {
             background: blue;
         }
-
     </style>
     <script>
         function swag_logout() {
@@ -72,14 +73,12 @@
                 }
             });
         }
-
     </script>
 </head>
 <!--end::Head-->
 <!--begin::Body-->
 
-<body id="kt_body"
-    class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
+<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed page-loading">
     <!--begin::Main-->
     <!--begin::Header Mobile-->
     <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
@@ -92,9 +91,7 @@
         <!--begin::Toolbar-->
         <div class="d-flex align-items-center">
             <!--begin::Aside Mobile Toggle-->
-            <button class="btn p-0 burger-icon burger-icon" id="kt_aside_mobile_toggle">
-                <span></span>
-            </button>
+          
             <!--end::Aside Mobile Toggle-->
             <!--begin::Topbar Mobile Toggle-->
             <button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle">
@@ -125,7 +122,7 @@
         <div class="d-flex flex-row flex-column-fluid page">
             <!--begin::Aside-->
             {{-- ini menu --}}
-            @include($menu)
+            {{-- @include($menu) --}}
             <!--end::Aside-->
             <!--begin::Wrapper-->
             <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
@@ -169,7 +166,71 @@
                 <!--end::Header-->
                 <!--begin::Content-->
                 {{-- ini content --}}
-                @include($content)
+                <div class="row">
+                    @forelse ($name as $name)
+                    <div class="col-md-4 pl-4">
+                        <!--begin::Engage Widget 14-->
+                        <div class="card card-custom card-stretch gutter-b">
+                            <div class="card-body p-15 pb-20">
+                                <div class="row mb-17">
+                                    <div class="col-xxl-5 mb-11 mb-xxl-0">
+                                        <!--begin::Image-->
+                                        <div class="card card-custom card-stretch">
+                                            <div class="card-body p-0 rounded px-10 py-15 d-flex align-items-center justify-content-center"
+                                                style="background-color: #FFCC69;">
+                                                <img src="{{asset('metch')}}/image/avatar-icon.jpg"
+                                                    class="mw-100 w-200px" style="transform: scale(1.6);">
+                                            </div>
+                                        </div>
+                                        <!--end::Image-->
+                                    </div>
+                                    <div class="col-xxl-7 pl-xxl-11">
+                                        <h2 class="font-weight-bolder text-dark mb-7" style="font-size: 32px;">{{$name}}
+                                        </h2>
+                                        <div class="font-size-h2 mb-7 text-dark-50">From
+                                            <span class="text-info font-weight-boldest ml-2">No urut - </span></div>
+                                        <div class="line-height-xl">You also need to be able to accept that not every
+                                            post is going to get your motor running. Some posts will feel like a chore,
+                                            but if you have editorial control over what you write about, then choose
+                                            topics you’d want to read – even if they relate to niche industries. The
+                                            more excited you can be about your topic, the more excited your readers
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--begin::Buttons-->
+                                <div class="d-flex">
+                                    <button type="button"
+                                        class="btn btn-primary font-weight-bolder mr-6 px-6 font-size-sm"> choose
+                                        <span class="svg-icon">
+                                            <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Files/File-plus.svg-->
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                                viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                                    <path
+                                                        d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z"
+                                                        fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+                                                    <path
+                                                        d="M11,14 L9,14 C8.44771525,14 8,13.5522847 8,13 C8,12.4477153 8.44771525,12 9,12 L11,12 L11,10 C11,9.44771525 11.4477153,9 12,9 C12.5522847,9 13,9.44771525 13,10 L13,12 L15,12 C15.5522847,12 16,12.4477153 16,13 C16,13.5522847 15.5522847,14 15,14 L13,14 L13,16 C13,16.5522847 12.5522847,17 12,17 C11.4477153,17 11,16.5522847 11,16 L11,14 Z"
+                                                        fill="#000000"></path>
+                                                </g>
+                                            </svg>
+                                            <!--end::Svg Icon-->
+                                        </span></button>
+
+                                </div>
+                                <!--end::Buttons-->
+                            </div>
+                        </div>
+                        <!--end::Engage Widget 14-->
+                    </div>
+                    @empty
+                    no data.
+                    @endforelse
+
+                </div>
                 {{-- {{$content}} --}}
                 <!--end::Content-->
                 <!--begin::Footer-->
@@ -180,7 +241,7 @@
                         <!--begin::Copyright-->
                         <div class="text-dark order-2 order-md-1">
                             <span class="text-muted font-weight-bold mr-2">© <?= date('Y'); ?></span>
-                            <a href="#"class="text-dark-75 text-hover-primary">Ory Fikry | ICT | BIPARTIT</a>
+                            <a href="#" class="text-dark-75 text-hover-primary">Ory Fikry | ICT | BIPARTIT</a>
                         </div>
                         <!--end::Copyright-->
                     </div>
@@ -270,7 +331,6 @@
             },
             "font-family": "Poppins"
         };
-
     </script>
     {{-- <script src="{{asset('metch')}}/plugins/custom/datatables/datatables.bundlef552.js?v=7.1.8"></script> --}}
     <script src="{{asset('metch')}}/plugins/global/plugins.bundlef552.js?v=7.1.8"></script>
