@@ -41,7 +41,10 @@
 				<div class="d-flex flex-center bgi-size-cover bgi-no-repeat flex-row-fluid" style="background-image: url({{asset('metch')}}/media/bg/bg-1.jpg);">
 					<div class="login-form text-center text-white p-7 position-relative overflow-hidden">
 						<!--begin::Login Header-->
-						<div class="d-flex flex-center mb-15">
+						<div class="d-flex flex-center mb-10">
+							<img src="{{asset('metch')}}/image/ptkp.jpg" class="rounded max-h-200px" alt="" />
+						</div>
+						<div class="d-flex flex-center mb-5">
 							<a href="#">
 								<img src="{{asset('metch')}}/image/hand-vote2.png" class="max-h-100px" alt="" />
 							</a>

@@ -93,11 +93,11 @@
                 </li>
             
                 <li class="menu-item" aria-haspopup="true">
-                    <a href="#" class="menu-link">
-                        <span class="menu-icon fas fa-cog">
+                    <a href="/send-mail" class="menu-link">
+                        <span class="menu-icon fas fa-envelope-open-text">
                            
                         </span>
-                        <span class="menu-text">App Settings</span>
+                        <span class="menu-text">Send Mail</span>
                     </a>
                 </li>	
             

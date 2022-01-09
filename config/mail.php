@@ -35,8 +35,8 @@ return [
 
     'mailers' => [
         'smtp' => [
-            'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+            'transport' => 'sendmail',
+            'host' => env('MAIL_HOST', 'smtp.gmail.com'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('MAIL_USERNAME'),
@@ -52,6 +52,7 @@ return [
         'mailgun' => [
             'transport' => 'mailgun',
         ],
+        
 
         'postmark' => [
             'transport' => 'postmark',
@@ -61,17 +62,26 @@ return [
             'transport' => 'sendmail',
             'path' => '/usr/sbin/sendmail -bs',
         ],
-
+        
         'log' => [
             'transport' => 'log',
             'channel' => env('MAIL_LOG_CHANNEL'),
         ],
-
+        
         'array' => [
             'transport' => 'array',
         ],
+        'failover' => [
+            'transport' => 'failover',
+            'mailers' => [
+                'postmark',
+                'mailgun',
+                'sendmail',
+            ],
+        ],
+        
     ],
-
+    
     /*
     |--------------------------------------------------------------------------
     | Global "From" Address

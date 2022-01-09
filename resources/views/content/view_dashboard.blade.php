@@ -60,10 +60,11 @@
             
             {{-- chart --}}
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-4">
                     <div class="card card-custom card-stretch gutter-b">
-                        <div class="card-body p-15 pb-20">
-                            <div>
+                        <div class="card-body px-5 pb-5">
+                            <div style="position: relative; height:35vh; width: 45vh">
+                                
                               <canvas id="resultChart"></canvas>
                             </div>
                         </div>

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\RateLimiter;
 
 class HomeController extends Controller
 {
@@ -13,11 +14,25 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Request $request)
     {
-        $this->middleware('auth');
-    }
+        
+        $id_url = $request->id;
+        $cek = DB::table('users')->select('*')->where('link', '=', $id_url)->get();
+        
+        if($id_url == '' || $cek == ''){
+            $secure = $this->middleware('auth');
+        }            
+            // var_dump($cek);
+            // var_dump($id_url);
+            // dd($id_url);
+            // die();
+            // return  "ok";
 
+        
+        
+    }
+    
     public function index()
     {
         $id_user = Auth::id();

@@ -4,7 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\SendEmailController;
+use App\Http\Controllers\VoteController;
 
+use App\Mail\SendMail;
+use Illuminate\Support\Facades\Mail;
 
 
 /*
@@ -17,6 +21,12 @@ use App\Http\Controllers\UsersController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// mailer route 
+Route::get('/send-mail', [SendEmailController::class, 'index'])->name('send-mail');
+
+// test 
+
+
 
 Route::get('/', function () {
     return redirect()->action([HomeController::class, 'index']);
@@ -24,7 +34,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Route::middleware(['throttle:3,1'])->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+// });
+
+Route::get('/votes', [HomeController::class, 'index'])->name('votes');
+
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
 
 // Route::get('/user.get_data',[UserController::class, 'get_data'])->name('get_data');
