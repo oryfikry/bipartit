@@ -74,7 +74,7 @@
                                     <span class="menu-text">Applications</span>
                                 </span>
                             </li>
-                            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                            {{-- <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                 <a href="/users" class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
@@ -86,14 +86,14 @@
                                     
                                 </a>
                                 
-                            </li>
+                            </li> --}}
                     
                         </ul>
                     </div>
                 </li>
             
                 <li class="menu-item" aria-haspopup="true">
-                    <a href="/send-mail" class="menu-link">
+                    <a href="/users" class="menu-link">
                         <span class="menu-icon fas fa-envelope-open-text">
                            
                         </span>

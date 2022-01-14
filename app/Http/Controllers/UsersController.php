@@ -54,7 +54,9 @@ class UsersController extends Controller
                 [
                  'name' => $request->name,
                  'email' => $request->email,
+                 'link' => $request->link,
                  'level' => $request->level,
+                 'is_receive' => $request->is_receive,
                  'password' => Hash::make($request->password),
                 ]);        
 

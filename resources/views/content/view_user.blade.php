@@ -1,5 +1,14 @@
+<style>
+
+</style>
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-    <div class="container">
+    <div id="top-widget" class="container">
+        <div class="card">
+            <div class="card-header">
+                <button id="sendMail" class="btn btn-primary"> Send The Mail <i class="fas fa-paper-plane"></i></button>
+                <div class="d-flex flex-row-reverse">/870 Mail Sent <b> 450 </b> </div>
+            </div>
+        </div>
         <div class="card">
             <div class="card-header">
                 <h2>{{$title}}</h2>
@@ -16,7 +25,8 @@
                                     {{-- <th>No.</th> --}}
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Level</th>
+                                    <th>Link</th>
+                                    <th>Is Received ?</th>
                                     <th style="width:90px;">Action</th>
                                 </tr>
                             </thead>
@@ -42,7 +52,7 @@
     </div>
 </div>
 
-<!-- Modal-->
+<!-- Modal User-->
 <div class="modal fade" id="modal-user" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdrop" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -59,12 +69,10 @@
 
                         <input type="text" name="name" class="form-control" id="name" placeholder="Nama"><br>
                         <input type="email" name="email" class="form-control" id="email" placeholder="email"><br>
-                        <select name="level" class="form-control" id="level">
-                            <option value="-">Pilih Level</option>
-                            <option value="1">Operator</option>
-                            <option value="2">Member</option>
-                        </select><br>
+                        <input type="text" name="link" class="form-control" id="link" placeholder="link"><br>
+                        <input type="text" name="is_receive" class="form-control" id="is_receive" placeholder="is_receive"><br>
                         <input type="text" name="password" class="form-control" placeholder="password"><br>
+                        <input type="hidden" name="level" class="form-control" value="1"><br>
                         <input type="hidden" name="user_id" id="user_id" value="">
                     </div>
                 </form>
@@ -72,6 +80,52 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary font-weight-bold" id="saveBtn">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Send The mail-->
+<div class="modal fade" id="modal-send-mail" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Modal Send Mail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formSendMail" name="formSendMail">
+                    <div class="form-group">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sumail</td>
+                                    <td>sumail@mail.com</td>
+                                    <td><div id="spinner" class="fas fa-spinner"></div></td>
+                                </tr>
+                                <tr>
+                                    <td>miwa</td>
+                                    <td>miwa@mail.com</td>
+                                    <td><div class="fas fa-check-circle text-success"></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary font-weight-bold" id="go">Go</button>
             </div>
         </div>
     </div>
@@ -120,8 +174,12 @@
                     name: 'email'
                 },
                 {
-                    data: 'level',
-                    name: 'level'
+                    data: 'link',
+                    name: 'link'
+                },
+                {
+                    data: 'is_receive',
+                    name: 'is_receive'
                 },
                 {
                     data: 'action',
@@ -154,7 +212,10 @@
                 $('#user_id').val(data.id);
                 $('#name').val(data.name);
                 $('#email').val(data.email);
-                $('#level').val(data.level);
+                $('#link').val(data.link);
+                $('#is_receive').val(data.is_receive);
+
+                // $('#level').val(data.level);
             })
         });
         // initialize btn save
@@ -177,7 +238,7 @@
                 },
                 error: function (data) {
                     swal_error();
-                    $('#saveBtn').html('Save Changes');
+                    $('#saveBtn').html('Save');
                 }
             });
 
@@ -211,7 +272,10 @@
             })
         });
 
-        // statusing
+        // new
+        $('#sendMail').click(function(){
+            $('#modal-send-mail').modal('show');
+        });
 
 
     });

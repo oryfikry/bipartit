@@ -25,6 +25,7 @@
         "browser-sync": "^2.27.7",
         "browser-sync-webpack-plugin": "^2.3.0",
         "express": "^4.17.2",
-        "express-generator": "^4.16.1"
+        "express-generator": "^4.16.1",
+        "fastest-validator": "^1.12.0"
     }
 }

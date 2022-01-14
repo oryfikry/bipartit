@@ -1,1 +1,1 @@
-send mail with mailgun
+email

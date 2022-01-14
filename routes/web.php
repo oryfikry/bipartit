@@ -7,6 +7,8 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SendEmailController;
 use App\Http\Controllers\VoteController;
 
+// use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use App\Mail\SendMail;
 use Illuminate\Support\Facades\Mail;
 
@@ -22,10 +24,14 @@ use Illuminate\Support\Facades\Mail;
 |
 */
 // mailer route 
-Route::get('/send-mail', [SendEmailController::class, 'index'])->name('send-mail');
 
 // test 
-
+Route::get('/testo', function () {
+    $user = DB::table('users')
+            ->select('email', 'link','is_receive')
+            ->get();
+    return response()->json($user);
+})->name('testo');
 
 
 Route::get('/', function () {

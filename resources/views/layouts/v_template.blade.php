@@ -54,6 +54,25 @@
         .paginate_button .current {
             background: blue;
         }
+        /* add new */
+        #top-widget{margin-top:-50px;}
+    @media only screen and (max-width: 990px) {
+        #top-widget{margin-top:25px;}
+}
+    #spinner{
+        animation-name: spin;
+        animation-duration: 2000ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear; 
+    }
+    @keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
 
     </style>
     <script>
