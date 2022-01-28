@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vote;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 
 class VoteController extends Controller
@@ -35,7 +38,18 @@ class VoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'emp_id' => 'required|string',
+            'candidate_id' => 'required|string',
+        ]);
+
+        Vote::Create(
+        [
+         'emp_id' => $request->emp_id,
+         'candidate_id' => $request->candidate_id,
+        ]);        
+
+        return response()->json(['success'=>'User saved successfully!']);
     }
 
     /**

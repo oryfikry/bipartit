@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-header">
                 <button id="sendMail" class="btn btn-primary"> Send The Mail <i class="fas fa-paper-plane"></i></button>
-                <div class="d-flex flex-row-reverse">/870 Mail Sent <b> 450 </b> </div>
+                <div class="float-right"><b> 450 </b> of 870 Mail Sent </div>
             </div>
         </div>
         <div class="card">

@@ -60,17 +60,20 @@
             
             {{-- chart --}}
             <div class="row">
-                <div class="col-md-4">
-                    <div class="card card-custom card-stretch gutter-b">
-                        <div class="card-body px-5 pb-5">
-                            <div style="position: relative; height:35vh; width: 45vh">
-                                
-                              <canvas id="resultChart"></canvas>
+            
+                    <div class="col-md-6">
+                        <div class="card card-custom card-stretch gutter-b">
+                            <div class="card-body px-5 pb-5">
+                                <div style="position: relative;">
+                                    
+                                  <canvas id="resultChart"></canvas>
+                                </div>
                             </div>
                         </div>
+                           
                     </div>
-                       
-                </div>
+                
+            
             </div>
 
         </div>
@@ -99,10 +102,22 @@
   };
 
   const config = {
-    type: 'pie',
-    data: data,
-    options: {}
-  };
+  type: 'pie',
+  data: data,
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Chart.js pie Chart'
+      }
+    }
+  },
+};
+
   const myChart = new Chart(
     document.getElementById('resultChart'),
     config
