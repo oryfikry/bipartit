@@ -40,8 +40,8 @@
         href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.23/b-1.6.5/b-html5-1.6.5/datatables.min.css" />
 
     {{-- csrf token --}}
-
-    @csrf
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    {{-- @csrf --}}
     {{-- table styling --}}
     <style>
         #tableUser_filter input {
@@ -59,6 +59,11 @@
         }
     </style>
     <script>
+           $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         function swag_logout() {
             Swal.fire({
                 title: 'Wanna Out?',
@@ -141,23 +146,23 @@
                         <!--end::Header Menu Wrapper-->
                         <!--begin::Topbar-->
                         <div class="topbar">
-                            <div class="topbar-item" onclick="swag_logout()">
+                            <div class="topbar-item" >
                                 <div
                                     class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2">
                                     <span
                                         class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>
                                     <span
                                         class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">
-                                        {{ Auth::user()->name }}</span>
-                                    <span class="symbol symbol-lg-35 symbol-25 symbol-light-success">
+                                        {{$username}}</span>
+                                    {{-- <span class="symbol symbol-lg-35 symbol-25 symbol-light-success">
                                         <span class="symbol-label font-size-h5 font-weight-bold"><i
                                                 class="fas fa-power-off"></i></span>
-                                    </span>
+                                    </span> --}}
                                 </div>
                             </div>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
-                            </form>
+                            </form> --}}
                             <!--end::User-->
                         </div>
                         <!--end::Topbar-->
@@ -167,48 +172,78 @@
                 <!--end::Header-->
                 <!--begin::Content-->
                 {{-- ini content --}}
+                {{-- show error validation --}}
+   
+                {{-- end show  --}}
+                
+                @if ($is_voted == '1')
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="text-center" style="font-size:25px;">
+                                You has been voted, your vote is Candidate 3
+                            </div>
+                        </div>
+                        <br>
+                        <div class="card">
+                            <div class="text-center">
+                                you voted at 25 Feb 2022
+                                <hr>
+                                Quick Count
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                @else
                 <div class="row">
                     @php
-                      $no = 1;   
+                      $no = 1;  
                     @endphp
                     @forelse ($name as $name)
                     <div class="col-md-4 pl-4">
                         <!--begin::Engage Widget 14-->
                         <div class="card card-custom card-stretch gutter-b">
                             <div class="card-body p-15 pb-20">
-                                <div class="row mb-17">
-                                    <div class="col-xxl-5 mb-11 mb-xxl-0">
+                                <div class="row mb-10">
+                                    <div class="col-md-12">
                                         <!--begin::Image-->
                                         <div class="card card-custom card-stretch">
-                                            <div class="card-body p-0 rounded px-10 py-15 d-flex align-items-center justify-content-center"
-                                                style="background-color: #FFCC69;">
-                                                <img src="{{asset('metch')}}/image/avatar-icon.jpg"
-                                                    class="mw-100 w-200px" style="transform: scale(1.6);">
+                                            <div class="card-body p-0 rounded px-10 py-8 d-flex align-items-center justify-content-center"
+                                                style="background-color: ;">
+                                                <img src="{{asset('metch')}}/image/avatar-icon.jpg"style="width: 160px; max-width:200px; height:160px;">
                                             </div>
                                         </div>
                                         <!--end::Image-->
                                     </div>
-                                    <div class="col-xxl-7 pl-xxl-11">
+                                    <div class="col-md-12 ">
                                         <h2 class="font-weight-bolder text-dark mb-7" style="font-size: 32px;">{{$name}}
                                         </h2>
                                         <div class="font-size-h2 mb-7 text-dark-50">From
                                             <span class="text-info font-weight-boldest ml-2">No urut - </span></div>
-                                        <div class="line-height-xl">You also need to be able to accept that not every
-                                            post is going to get your motor running. Some posts will feel like a chore,
-                                            but if you have editorial control over what you write about, then choose
-                                            topics you’d want to read – even if they relate to niche industries. The
-                                            more excited you can be about your topic, the more excited your readers
+                                        <div class="line-height-xl text-justify">You also need to be able to accept that not every
+                                            post is going to get your motor running. 
                                         </div>
                                     </div>
                                 </div>
 
                                 <!--begin::Buttons-->
                                 <div class="d-flex">
-                                    <button type="button" style="width:100%" onclick="votes({{$no++}})"
-                                        class="btn btn-primary font-weight-bolder mr-6 px-6 font-size-sm"> vote
+                                    <button type="button" onclick="votes({{$no++}})"
+                                        class="btn btn-primary font-weight-bolder mr-6 px-6 font-size-sm"> choose
                                         <span class="svg-icon">
                                             <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Files/File-plus.svg-->
-                                         
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                                viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                                    <path
+                                                        d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z"
+                                                        fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+                                                    <path
+                                                        d="M11,14 L9,14 C8.44771525,14 8,13.5522847 8,13 C8,12.4477153 8.44771525,12 9,12 L11,12 L11,10 C11,9.44771525 11.4477153,9 12,9 C12.5522847,9 13,9.44771525 13,10 L13,12 L15,12 C15.5522847,12 16,12.4477153 16,13 C16,13.5522847 15.5522847,14 15,14 L13,14 L13,16 C13,16.5522847 12.5522847,17 12,17 C11.4477153,17 11,16.5522847 11,16 L11,14 Z"
+                                                        fill="#000000"></path>
+                                                </g>
+                                            </svg>
                                             <!--end::Svg Icon-->
                                         </span></button>
 
@@ -223,6 +258,7 @@
                     @endforelse
 
                 </div>
+                @endif
 
 <script>
     function votes(id){
@@ -239,17 +275,19 @@
                 if (result.isConfirmed) {
                    
                     var candidate = id;
-                    var emp_id = 2; 
-                    var _token = $(name='_token').val();
+                    var emp_id = '{{$emp_id}}'; 
+                    // var _token = $('#token').content();
+                    // console.log(_token);
                     $.ajax({
                         type: "POST",
                         url: "{{route('votes.store')}}",
-                        data: {candidate:candidate, emp_id:emp_id, _token},
+                        data: {candidate:candidate, emp_id:emp_id},
                         success: function (data) {
+                            $('body').hide();
                             console.log(data);
                         },
-                        error: function (data) {
-                            console.log(data);
+                        error: function (err) {
+                            console.log(err);
                         }
                     });
                 }

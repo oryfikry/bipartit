@@ -39,8 +39,15 @@ class HomeController extends Controller
         $cek = DB::table('users')->select('level')->where('id', '=', $id_user)->get();
         $idfinal = $cek[0]->level;
         // dd($idfinal);
-        $data['count_user'] =  User::latest()->count();
-        $data['name'] = array('Candidate 1', 'Candidate 2', 'Candidate 3' );
+        // cek for is voted user 
+        $cek_isVoted = DB::table('users')->select('*')->leftJoin('vote','users.id','=','vote.emp_id')->where('users.id', '=', $id_user)->get();
+        $is_voted = $cek_isVoted[0]->emp_id == null ? '1' : '0';
+        
+        $data = array(
+            'count_user' => User::latest()->count(),
+            'name' => array('Candidate 1', 'Candidate 2', 'Candidate 3' ),
+            'is_voted' => $is_voted
+        );
 
         if($idfinal == '0'){
             $data['menu'] = 'menu.v_menu_admin';

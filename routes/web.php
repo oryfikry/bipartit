@@ -37,13 +37,13 @@ Route::get('/', function () {
     return redirect()->action([HomeController::class, 'index']);
 });
 
-Auth::routes();
+// Auth::routes();
 
 // Route::middleware(['throttle:3,1'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/board', [VoteController::class, 'showboard'])->name('board');
 // });
 
-Route::get('/votes', [HomeController::class, 'index'])->name('votes');
 
 // Route::get('/user', [UserController::class, 'index'])->name('user.index');
 
