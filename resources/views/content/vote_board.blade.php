@@ -131,9 +131,9 @@
             {{-- @include($menu) --}}
             <!--end::Aside-->
             <!--begin::Wrapper-->
-            <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <div class="d-flex flex-column flex-row-fluid wrapper" style="padding-top:68px" id="kt_wrapper">
                 <!--begin::Header-->
-                <div id="kt_header" class="header header-fixed">
+                <div id="kt_header" class="header header-fixed" style="height:41px">
                     <!--begin::Container-->
                     <div class="container-fluid d-flex align-items-stretch justify-content-between">
                         <!--begin::Header Menu Wrapper-->
@@ -146,7 +146,7 @@
                         <!--end::Header Menu Wrapper-->
                         <!--begin::Topbar-->
                         <div class="topbar">
-                            <div class="topbar-item" >
+                            <div class="topbar-item">
                                 <div
                                     class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2">
                                     <span
@@ -202,48 +202,40 @@
                     <div class="col-md-4 pl-4">
                         <!--begin::Engage Widget 14-->
                         <div class="card card-custom card-stretch gutter-b">
-                            <div class="card-body p-15 pb-20">
-                                <div class="row mb-10">
+                            <div class="card-body" style="margin-bottom:0; padding:2.75rem!important;">
+                                <div class="row">
                                     <div class="col-md-12">
+                                        <center>
+                                            <div class="">
+                                                <span style="font-size: 45px;" class="text-dark text-center font-weight-boldest">{{$no}} </span></div>
+
+                                        </center>
                                         <!--begin::Image-->
                                         <div class="card card-custom card-stretch">
-                                            <div class="card-body p-0 rounded px-10 py-8 d-flex align-items-center justify-content-center"
+                                            <div class="card-body p-0 rounded px-10 pb-6 d-flex align-items-center justify-content-center"
                                                 style="background-color: ;">
                                                 <img src="{{asset('metch')}}/image/avatar-icon.jpg"style="width: 160px; max-width:200px; height:160px;">
                                             </div>
                                         </div>
                                         <!--end::Image-->
                                     </div>
-                                    <div class="col-md-12 ">
-                                        <h2 class="font-weight-bolder text-dark mb-7" style="font-size: 32px;">{{$name}}
+                                    <div class="col-md-12 mt-8">
+                                        <h2 class="text-center font-weight-bolder text-dark" style="font-size: 32px;">{{$name}}
                                         </h2>
-                                        <div class="font-size-h2 mb-7 text-dark-50">From
-                                            <span class="text-info font-weight-boldest ml-2">No urut - </span></div>
-                                        <div class="line-height-xl text-justify">You also need to be able to accept that not every
+                                        
+                                        <div class="line-height-xl text-justify py-4">You also need to be able to accept that not every
                                             post is going to get your motor running. 
                                         </div>
                                     </div>
                                 </div>
 
                                 <!--begin::Buttons-->
-                                <div class="d-flex">
-                                    <button type="button" onclick="votes({{$no++}})"
-                                        class="btn btn-primary font-weight-bolder mr-6 px-6 font-size-sm"> choose
+                                <div class="pt-6">
+                                    <button style="width:100%;" type="button" onclick="votes({{$no++}})"
+                                        class="btn btn-primary font-weight-bolder mr-6 px-6 font-size-h2"> VOTE
                                         <span class="svg-icon">
                                             <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Files/File-plus.svg-->
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
-                                                viewBox="0 0 24 24" version="1.1">
-                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                    <polygon points="0 0 24 0 24 24 0 24"></polygon>
-                                                    <path
-                                                        d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z"
-                                                        fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
-                                                    <path
-                                                        d="M11,14 L9,14 C8.44771525,14 8,13.5522847 8,13 C8,12.4477153 8.44771525,12 9,12 L11,12 L11,10 C11,9.44771525 11.4477153,9 12,9 C12.5522847,9 13,9.44771525 13,10 L13,12 L15,12 C15.5522847,12 16,12.4477153 16,13 C16,13.5522847 15.5522847,14 15,14 L13,14 L13,16 C13,16.5522847 12.5522847,17 12,17 C11.4477153,17 11,16.5522847 11,16 L11,14 Z"
-                                                        fill="#000000"></path>
-                                                </g>
-                                            </svg>
+                                          
                                             <!--end::Svg Icon-->
                                         </span></button>
 
@@ -336,7 +328,7 @@
                 {{-- {{$content}} --}}
                 <!--end::Content-->
                 <!--begin::Footer-->
-                <div class="footer bg-white py-4 d-flex flex-lg-column" id="kt_footer">
+                {{-- <div class="footer bg-white py-4 d-flex flex-lg-column" id="kt_footer">
                     <!--begin::Container-->
                     <div
                         class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
@@ -348,7 +340,7 @@
                         <!--end::Copyright-->
                     </div>
                     <!--end::Container-->
-                </div>
+                </div> --}}
                 <!--end::Footer-->
             </div>
             <!--end::Wrapper-->

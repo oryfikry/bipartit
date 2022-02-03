@@ -55,7 +55,7 @@ class VoteController extends Controller
         $data = array(
             'count_user' => User::latest()->count(),
             'no_urut' => array('1','2','3'),
-            'name' => array('Candidate 1', 'Candidate 2', 'Candidate 3' ),
+            'name' => array('Joko Widodo', 'Prabowo Subianto', 'Anies Baswedan' ),
             'username' => $cek_user[0]->name,
             'emp_id' => $cek_user[0]->id,
             'is_voted' => $is_voted

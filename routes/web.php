@@ -37,7 +37,7 @@ Route::get('/', function () {
     return redirect()->action([HomeController::class, 'index']);
 });
 
-// Auth::routes();
+Auth::routes();
 
 // Route::middleware(['throttle:3,1'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');

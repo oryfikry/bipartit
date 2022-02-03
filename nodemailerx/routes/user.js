@@ -1,7 +1,7 @@
 const express = require('express');
 const res = require('express/lib/response');
 const router = express.Router()
-const Validator = require('fastest-validator')
+// const Validator = require('fastest-validator')
 
 const {User} = require('../models/User')
 
