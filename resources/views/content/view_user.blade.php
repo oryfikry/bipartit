@@ -108,16 +108,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>sumail</td>
-                                    <td>sumail@mail.com</td>
-                                    <td><div id="spinner" class="fas fa-spinner"></div></td>
-                                </tr>
-                                <tr>
-                                    <td>miwa</td>
-                                    <td>miwa@mail.com</td>
-                                    <td><div class="fas fa-check-circle text-success"></div></td>
-                                </tr>
+                                @forelse($all_user as $r_user)
+                                    <tr>
+                                        <td>{{$r_user->name}} </td>
+                                        <td>{{$r_user->email}} </td>
+                                        <td>
+                                            @if($r_user->is_receive == 0)
+                                            <div class="fas fa-expand-arrow-alt text-danger"></div>
+                                            @else 
+                                            <div class="fas fa-check-circle text-success"></div>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @empty 
+                                 no data
+                                @endforelse
+                       
                             </tbody>
                         </table>
                     </div>

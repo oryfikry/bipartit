@@ -27,10 +27,7 @@ class HomeController extends Controller
             // var_dump($id_url);
             // dd($id_url);
             // die();
-            // return  "ok";
-
-        
-        
+            // return  "ok"; 
     }
     
     public function index()

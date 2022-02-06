@@ -18,8 +18,10 @@ class UsersController extends Controller
 
     public function index(Request $request)
     {
+        // dd(User::all());
         $data = [
             'count_user' => User::latest()->count(),
+            'all_user'   => User::all(),
             'menu'       => 'menu.v_menu_admin',
             'content'    => 'content.view_user',
             'title'    => 'Table User'

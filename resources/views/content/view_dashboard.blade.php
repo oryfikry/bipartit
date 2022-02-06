@@ -112,7 +112,7 @@
       },
       title: {
         display: true,
-        text: 'Chart.js pie Chart'
+        text: 'Quick Count'
       }
     }
   },

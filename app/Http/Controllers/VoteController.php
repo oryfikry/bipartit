@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Vote;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Vote;
 use App\Models\User;
+
 
 
 
@@ -23,12 +24,21 @@ class VoteController extends Controller
        
         
     }
+    public function data_chart()
+    {
+        $data = array(
+           Vote::where('candidate_id','=',1)->get()->count(),
+           Vote::where('candidate_id','=',2)->get()->count(),
+           Vote::where('candidate_id','=',3)->get()->count()
+        );
+       return response()->json($data);
+
+    }
 
     public function showboard(Request $request)
     {
         $link = htmlspecialchars($request->id);
         // dd($link);
-
         // validation 
         $validated = $request->validate([
             'id' => 'required|string'
@@ -44,22 +54,30 @@ class VoteController extends Controller
 
 
         $cek_isVoted = DB::table('users')->select('*')->leftJoin('vote','users.id','=','vote.emp_id')->where('vote.emp_id', '=', $cek_user[0]->id)->get();
-        // dd(count($cek_isVoted));
+        // dd($cek_isVoted);
         if(count($cek_isVoted) > 0){
-            // $is_voted = $cek_isVoted[0]->emp_id = null ? 'true' : 'false';
+            // true 
             $is_voted = '1';
         }else{
+            // false
             $is_voted = '0';
-            // 'false'
         };
         $data = array(
             'count_user' => User::latest()->count(),
             'no_urut' => array('1','2','3'),
-            'name' => array('Joko Widodo', 'Prabowo Subianto', 'Anies Baswedan' ),
+            'name' => array('Joko Widodo', 'Prabowo Subianto', 'Anies Baswedan'),
             'username' => $cek_user[0]->name,
             'emp_id' => $cek_user[0]->id,
             'is_voted' => $is_voted
         );
+        if($is_voted == '1'){
+            $data2 = array( 
+                'voted_candidate' => $cek_isVoted[0]->candidate_id,
+                'voted_date' => $cek_isVoted[0]->created_at
+            );
+           $data = array_merge_recursive($data,$data2);
+          
+        }
         return view('content.vote_board',$data);
     }
     /**
@@ -80,12 +98,9 @@ class VoteController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json($request);
-        dd($request);
-        $validated = $request->validate([
-            'emp_id' => 'required|string',
-            'candidate_id' => 'required|string',
-        ]);
+        // return response()->json($request);
+        
+      
 
         Vote::Create(
         [

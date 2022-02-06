@@ -8,7 +8,10 @@
     <!-- End Google Tag Manager -->
     <meta charset="utf-8" />
     <title>Oryfikry | BIPARTIT</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+  />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
@@ -38,12 +41,37 @@
 
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.23/b-1.6.5/b-html5-1.6.5/datatables.min.css" />
+        <link
+        rel="stylesheet"
+        href="https://unpkg.com/swiper/swiper-bundle.min.css"
+      />
 
     {{-- csrf token --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- @csrf --}}
     {{-- table styling --}}
     <style>
+        @media only screen and (max-width: 990px) {
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            /* display: -webkit-flex; */
+            /* display: flex; */
+            -webkit-box-pack: center;
+            /* -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center; */
+            }
+        }
+     
         #tableUser_filter input {
             background: none;
             outline-color: none;
@@ -59,11 +87,6 @@
         }
     </style>
     <script>
-           $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
         function swag_logout() {
             Swal.fire({
                 title: 'Wanna Out?',
@@ -177,149 +200,232 @@
                 {{-- end show  --}}
                 
                 @if ($is_voted == '1')
+                <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="text-center" style="font-size:25px;">
-                                You has been voted, your vote is Candidate 3
+                                You has been voted, your vote is Candidate {{$voted_candidate}}
                             </div>
                         </div>
                         <br>
                         <div class="card">
                             <div class="text-center">
-                                you voted at 25 Feb 2022
+                                you voted at {{$voted_date}}
                                 <hr>
                                 Quick Count
                                 <br>
                             </div>
                         </div>
                     </div>
+                </div>
+                    <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6">
+                                <div class="card card-custom card-stretch gutter-b">
+                                    <div class="card-body">
+                                        <div>     
+                                          <canvas id="chartQC"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                   
+                            </div>
+                            <div class="col-md-3"></div>
+                        
+                    </div>
                 @else
                 <div class="row">
                     @php
                       $no = 1;  
                     @endphp
-                    @forelse ($name as $name)
-                    <div class="col-md-4 pl-4">
-                        <!--begin::Engage Widget 14-->
-                        <div class="card card-custom card-stretch gutter-b">
-                            <div class="card-body" style="margin-bottom:0; padding:2.75rem!important;">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <center>
-                                            <div class="">
-                                                <span style="font-size: 45px;" class="text-dark text-center font-weight-boldest">{{$no}} </span></div>
+                       <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            @forelse ($name as $name)
+                            <div class="col-md-4 pl-4 swiper-slide">
+                                <!--begin::Engage Widget 14-->
+                                <div class="card card-custom card-stretch gutter-b">
+                                    <div class="card-body" style="margin-bottom:0; padding:2.75rem!important;">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <center>
+                                                    <div class="">
+                                                        <span style="font-size: 45px;" class="text-dark text-center font-weight-boldest">{{$no}} </span></div>
 
-                                        </center>
-                                        <!--begin::Image-->
-                                        <div class="card card-custom card-stretch">
-                                            <div class="card-body p-0 rounded px-10 pb-6 d-flex align-items-center justify-content-center"
-                                                style="background-color: ;">
-                                                <img src="{{asset('metch')}}/image/avatar-icon.jpg"style="width: 160px; max-width:200px; height:160px;">
+                                                </center>
+                                                <!--begin::Image-->
+                                                <div class="card card-custom card-stretch">
+                                                    <div class="card-body p-0 rounded px-10 pb-6 d-flex align-items-center justify-content-center"
+                                                        style="background-color: ;">
+                                                        <img src="{{asset('metch')}}/image/avatar-icon.jpg"style="width: 160px; max-width:200px; height:160px;">
+                                                    </div>
+                                                </div>
+                                                <!--end::Image-->
+                                            </div>
+                                            <div class="col-md-12 mt-8">
+                                                <h2 class="text-center font-weight-bolder text-dark" style="font-size: 32px;">{{$name}}
+                                                </h2>
+                                                
+                                                <div class="line-height-xl text-justify py-4">You also need to be able to accept that not every
+                                                    post is going to get your motor running. 
+                                                </div>
                                             </div>
                                         </div>
-                                        <!--end::Image-->
-                                    </div>
-                                    <div class="col-md-12 mt-8">
-                                        <h2 class="text-center font-weight-bolder text-dark" style="font-size: 32px;">{{$name}}
-                                        </h2>
-                                        
-                                        <div class="line-height-xl text-justify py-4">You also need to be able to accept that not every
-                                            post is going to get your motor running. 
+
+                                        <!--begin::Buttons-->
+                                        <div class="pt-6">
+                                            <button style="width:100%;" type="button" onclick="votes({{$no++}})"
+                                                class="btn btn-primary font-weight-bolder mr-6 px-6 font-size-h2"> VOTE
+                                                <span class="svg-icon">
+                                                    <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Files/File-plus.svg-->
+                                                
+                                                    <!--end::Svg Icon-->
+                                                </span></button>
+
                                         </div>
+                                        <!--end::Buttons-->
                                     </div>
                                 </div>
-
-                                <!--begin::Buttons-->
-                                <div class="pt-6">
-                                    <button style="width:100%;" type="button" onclick="votes({{$no++}})"
-                                        class="btn btn-primary font-weight-bolder mr-6 px-6 font-size-h2"> VOTE
-                                        <span class="svg-icon">
-                                            <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Files/File-plus.svg-->
-                                          
-                                            <!--end::Svg Icon-->
-                                        </span></button>
-
-                                </div>
-                                <!--end::Buttons-->
+                                <!--end::Engage Widget 14-->
                             </div>
+                            @empty
                         </div>
-                        <!--end::Engage Widget 14-->
-                    </div>
-                    @empty
-                    no data.
-                    @endforelse
+                        <div class="swiper-pagination"></div>
+                       </div>
+                            no data.
+                            @endforelse
 
                 </div>
                 @endif
 
-<script>
-    function votes(id){
-    
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "Want to vote candidate "+id+" ?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                   
-                    var candidate = id;
-                    var emp_id = '{{$emp_id}}'; 
-                    // var _token = $('#token').content();
-                    // console.log(_token);
-                    $.ajax({
-                        type: "POST",
-                        url: "{{route('votes.store')}}",
-                        data: {candidate:candidate, emp_id:emp_id},
-                        success: function (data) {
-                            $('body').hide();
-                            console.log(data);
-                        },
-                        error: function (err) {
-                            console.log(err);
-                        }
-                    });
+
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+@push('scripts')
+ <script>
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
-            })
-    }
-       
-</script>
+            });
+    
+        function votes(id){
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Want to vote candidate "+id+" ?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        
+                        var candidate_id = id;
+                        var emp_id = '{{$emp_id}}'; 
+                        // var _token = $('#token').content();
+                        // console.log(_token);
+                        $.ajax({
+                            type: "POST",
+                            dataType: 'json',
+                            url: "{{route('votes.store')}}",
+                            data: {candidate_id:candidate_id, emp_id:emp_id},
+                            success: function (data) {
+                                console.log(data);
+                                location.reload();
+                            },
+                            error: function (err) {
+                                console.log(err);
+                            }
+                        });
+                    }
+                })
+        }
 
+        // chart settings 
+        function getDataChart()
+        {
+            $.ajax({
+                    type: "GET",
+                    dataType: 'json',
+                    url: "{{route('data-chart')}}",
+                    success: function (data) {
+                    initCharts(data);
+                    //   return data;
+                    // console.log(data);
+         
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+        }
+        function initCharts(dataCharts){
+            var ctx = $("#chartQC");
+                const labels = [
+                    'Joko Widodo',
+                    'Prabowo Subianto',
+                    'Anies Baswedan'
+                ];
+                const data = {
+                    labels: labels,
+                    datasets: [{
+                    label: 'Vote Result dataset',
+                    backgroundColor: ['rgb(255, 99, 132)',
+                    'rgb(75, 192, 192)',
+                    'rgb(255, 205, 86)'],
+                    //   borderColor: 'rgb(255, 99, 132)',
+                    data: dataCharts,
+                    }]
+                };
+                const config = {
+                    type: 'pie',
+                    data: data,
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Quick Count'
+                        }
+                        }
+                    },
+                    };
+                const myChart = new Chart(
+                    document.getElementById('chartQC'),
+                    config
+                );
+                
+                // set interval time for update chart 
+                setInterval(() => { 
+                    myChart.destroy();
+                    getDataChart();
+                 }, 20000);
+        }
 
+        getDataChart();
+        
 
+        
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        // mobile mode checker 
+        var vwprt = window.innerHeight;
+        var isMobile = navigator.userAgentData.mobile;
+        if(isMobile){
+            var swiper = new Swiper(".mySwiper", {
+            // pagination: {
+            //   el: ".swiper-pagination",
+            //   dynamicBullets: true,
+            // },
+            });
+        }
+        console.log(isMobile);
+        console.log(vwprt);
+ </script>
+@endpush
 
 
 
@@ -437,10 +543,6 @@
     <!--begin::Page Scripts(used by this page)-->
     <script src="{{asset('metch')}}/js/pages/widgetsf552.js?v=7.1.8"></script>
     {{-- cdn datatable --}}
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script type="text/javascript"
-        src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.23/b-1.6.5/b-html5-1.6.5/datatables.min.js"></script>
     @stack('scripts')
     <!--end::Page Scripts-->
 </body>

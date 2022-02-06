@@ -42,6 +42,7 @@ Auth::routes();
 // Route::middleware(['throttle:3,1'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/board', [VoteController::class, 'showboard'])->name('board');
+    Route::get('/data_chart', [VoteController::class, 'data_chart'])->name('data-chart');
 // });
 
 
