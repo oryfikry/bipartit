@@ -28,9 +28,19 @@ class UsersController extends Controller
         ];
 
         if ($request->ajax()) {
-            $q_user = User::select('*')->where('level','!=', 0)->orderByDesc('created_at');
+            $q_user = User::select('id','name','email','link','is_receive')->where('level','!=', 0)->orderByDesc('created_at');
             return Datatables::of($q_user)
                     ->addIndexColumn()
+                    ->addColumn('is_receives', function($row){
+     
+              
+                    if($row->is_receive == 0 ){
+                        $status = '<div class="text-danger">x</div>';
+                    }else{
+                        $status = '<div class="fas fa-check-circle text-success"></div>' ;
+                    }    
+                      return $status;         
+                    })
                     ->addColumn('action', function($row){
      
                         $btn = '<div data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="btn btn-sm btn-icon btn-outline-success btn-circle mr-2 edit editUser"><i class=" fi-rr-edit"></i></div>';
@@ -38,7 +48,7 @@ class UsersController extends Controller
  
                          return $btn;
                     })
-                    ->rawColumns(['action'])
+                    ->rawColumns(['action','is_receives'])
                     ->make(true);
         }
 

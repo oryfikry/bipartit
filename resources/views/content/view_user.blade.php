@@ -131,7 +131,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary font-weight-bold" id="go">Go</button>
+                <a href="http://localhost:3000" target="_blank">
+                    <button type="button" class="btn btn-primary font-weight-bold" id="go">Go</button>
+                </a>
             </div>
         </div>
     </div>
@@ -184,8 +186,10 @@
                     name: 'link'
                 },
                 {
-                    data: 'is_receive',
-                    name: 'is_receive'
+                    data: 'is_receives',
+                    name: 'is_receives',
+                    orderable: false,
+                    searchable: false
                 },
                 {
                     data: 'action',
