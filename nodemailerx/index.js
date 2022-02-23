@@ -99,11 +99,14 @@ function template(receiver,textMail) {
                                             style="margin-top:0;margin-bottom:16px;font-size:26px;line-height:32px;font-weight:bold;letter-spacing:-0.02em;">
                                             Election Bipartit 2022 </h1>
                                         <p style="margin:0;">Click button below to participate in election !.</p>
-                                        <p>   <a href="#"
+                                        <p>  
+                                         <a href="http://127.0.0.1:8000/board?id=`+textMail+`" target="_blank"
                                             style="background: #ff3884; text-decoration: none; padding: 10px 25px; color: #ffffff; border-radius: 4px; display:inline-block; mso-padding-alt:0;text-underline-color:#ff3884">
-                                            <!--[if mso]><i style="letter-spacing: 25px;mso-font-width:-100%;mso-text-raise:20pt">&nbsp;</i><![endif]--><span
-                                                style="mso-text-raise:10pt;font-weight:bold;">Participate Now !</span>
-                                            <!--[if mso]><i style="letter-spacing: 25px;mso-font-width:-100%">&nbsp;</i><![endif]--></a></p>
+                                            <!--[if mso]><i style="letter-spacing: 25px;mso-font-width:-100%;mso-text-raise:20pt">&nbsp;</i><![endif]-->
+                                            <span style="mso-text-raise:10pt;font-weight:bold;">Participate Now !</span>
+                                            <!--[if mso]><i style="letter-spacing: 25px;mso-font-width:-100%">&nbsp;</i><![endif]-->
+                                         </a>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr>

@@ -114,7 +114,7 @@
         <!--begin::Logo-->
         <a href="#">
             {{-- <img alt="Logo" src="{{asset('metch')}}/media/logos/logo-light.png" /> --}}
-            <div class="text-white"><i class="fab fa-angrycreative fa-4x"></i></div>
+            {{-- <div class="text-white"><i class="fab fa-angrycreative fa-4x"></i></div> --}}
         </a>
         <!--end::Logo-->
         <!--begin::Toolbar-->
@@ -204,7 +204,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="text-center" style="font-size:25px;">
-                                You has been voted, your vote is Candidate {{$voted_candidate}}
+                                You has been voted, your vote is <?= $name[$voted_candidate-1]?>
                             </div>
                         </div>
                         <br>

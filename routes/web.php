@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SendEmailController;
 use App\Http\Controllers\VoteController;
+use App\Http\Controllers\PeriodSettingController;
 
 // use Illuminate\Support\Facades\DB;
 use App\Models\User;
@@ -39,11 +40,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// route middleware throttle is function to prevent brute force request, uncomment the bracket to activate
 // Route::middleware(['throttle:3,1'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/board', [VoteController::class, 'showboard'])->name('board');
-    Route::get('/data_chart', [VoteController::class, 'data_chart'])->name('data-chart');
 // });
+
+    Route::get('/data_chart', [VoteController::class, 'data_chart'])->name('data-chart');
 
 
 // Route::get('/user', [UserController::class, 'index'])->name('user.index');
@@ -51,4 +54,6 @@ Auth::routes();
 // Route::get('/user.get_data',[UserController::class, 'get_data'])->name('get_data');
 Route::resource('users', UsersController::class);
 Route::resource('votes', VoteController::class);
+Route::resource('period-settings', PeriodSettingController::class);
+
 

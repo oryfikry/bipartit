@@ -100,6 +100,14 @@
                         <span class="menu-text">Send Mail</span>
                     </a>
                 </li>	
+                <li class="menu-item" aria-haspopup="true">
+                    <a href="/period-settings" class="menu-link">
+                        <span class="menu-icon fas fa-clock">
+                           
+                        </span>
+                        <span class="menu-text">Period Setting</span>
+                    </a>
+                </li>
             
             </ul>
             <!--end::Menu Nav-->

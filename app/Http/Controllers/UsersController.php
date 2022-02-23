@@ -7,6 +7,7 @@ use DataTables;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Carbon;
 
 
 class UsersController extends Controller
@@ -66,7 +67,7 @@ class UsersController extends Controller
                 [
                  'name' => $request->name,
                  'email' => $request->email,
-                 'link' => $request->link,
+                 'link' => Hash::make(now(),['rounds'=>5]),
                  'level' => $request->level,
                  'is_receive' => $request->is_receive,
                  'password' => Hash::make($request->password),
